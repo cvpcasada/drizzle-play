@@ -1,10 +1,5 @@
 import InsertCountryForm from "@/components/InsertCountryForm";
-import { db } from "@/db/drizzle-db";
-import { countries } from "@/db/schema";
-
-async function getCountries() {
-  return await db.select().from(countries);
-}
+import { getCountries } from "./api/countries/route";
 
 export default async function Home() {
   let countries = await getCountries();
