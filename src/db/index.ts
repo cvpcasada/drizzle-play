@@ -1,3 +1,5 @@
+"use server";
+
 import { InferModel } from "drizzle-orm";
 import { db } from "./drizzle-db";
 import { countries } from "./schema";
