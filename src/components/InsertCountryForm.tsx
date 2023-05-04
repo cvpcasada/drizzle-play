@@ -1,6 +1,6 @@
 "use client";
 
-import { insertCountry } from "@/app/api/countries/route";
+import { insertCountry } from "@/db";
 
 export default function InsertCountryForm() {
   return (

@@ -1,5 +1,5 @@
 import InsertCountryForm from "@/components/InsertCountryForm";
-import { getCountries } from "./api/countries/route";
+import { getCountries } from "@/db";
 
 export default async function Home() {
   let countries = await getCountries();
