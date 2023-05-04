@@ -1,5 +1,3 @@
-"use server";
-
 import { NewCountry, getCountries, insertCountry } from "@/db";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
