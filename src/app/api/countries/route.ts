@@ -10,5 +10,5 @@ export async function PUT(request: NextRequest) {
   let newCountry: NewCountry = await request.json();
   let dbResponse = await insertCountry(newCountry);
 
-  return NextResponse.json({ ...newCountry, id: dbResponse.insertId });
+  return NextResponse.json({ ...newCountry, id: dbResponse?.data?.insertId });
 }

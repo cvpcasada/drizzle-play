@@ -13,10 +13,20 @@ export async function getCountries() {
 }
 
 export async function insertCountry(country: NewCountry) {
-  let response = db.insert(countries).values(country);
-  
-  // refetch all queries from this path
-  revalidatePath("/");
+  let response;
+  try {
+    let { insertId } = await db.insert(countries).values(country);
+    response = { data: { insertId } };
+    
+  } catch (e: unknown) {
+    if (e instanceof Error)
+      response = {
+        error: { cause: e.cause, message: e.message, name: e.name },
+      };
+  } finally {
+    // refetch all queries from this path
+    revalidatePath("/");
 
-  return response;
+    return response;
+  }
 }
