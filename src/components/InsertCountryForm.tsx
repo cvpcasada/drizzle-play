@@ -1,9 +1,10 @@
 "use client";
 
 import { insertCountry } from "@/db";
-import { startTransition, useState } from "react";
+import { useState, useTransition } from "react";
 
 export default function InsertCountryForm() {
+  let [transitioning, startTransition] = useTransition();
   let [error, setError] = useState<{
     name: string;
     message: string;
@@ -21,15 +22,17 @@ export default function InsertCountryForm() {
           if (result?.error) setError(result.error);
         });
       }}
+      className="p-2"
     >
-      <label className={error ? "bg-red-700" : ''}>
-        <span>Add Country Entry:</span>
+      <label className="inline-flex gap-4">
+        <span className={error ? "bg-red-700 rounded-md" : ''}>Add Country Entry:</span>
         <input
           name="country_name"
-          className="text-black"
+          className="text-black rounded-md px-2"
           type="text"
           placeholder="Philippines"
         />
+        <span>{transitioning ? "loading..." : ""}</span>
       </label>
     </form>
   );
